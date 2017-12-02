@@ -1,4 +1,4 @@
-package com.huorong.DemoOne.service;
+package com.huorong.DemoOne;
 
 import org.springframework.stereotype.Service;
 
