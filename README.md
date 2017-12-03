@@ -44,3 +44,12 @@
 * @Autowired
 * @Inject
 * @Resource
+### oop不足
+    类继承只能为单继承，阻止更多行为添加到一组类上。
+### AOP
+    AOP目的就是解耦，让一组类共享相同的行为。
+### Spring支持AspectJ的注解式切面编程
+1.使用@Aspect声明是一个切面
+2.使用@After,@Before,@Around,可直接将拦截规则(切点)作为参数。
+3.其中@After,@Before,@Around参数的拦截规则为起点(PointCut)
+4.其中符合条件的每一个被拦截处为连接点(JoinPoint)

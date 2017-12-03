@@ -9,6 +9,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @Configuration
 @ComponentScan("com.huorong.DemoTwo")
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy // 注解开启Spring对AspectJ代理的支持
 public class AopConfig {
 }
