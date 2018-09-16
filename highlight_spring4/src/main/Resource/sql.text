@@ -1,0 +1,142 @@
+/*
+SQLyog Ultimate v11.27 (32 bit)
+MySQL - 5.7.21-log : Database - db_pioneer
+*********************************************************************
+*/
+
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_pioneer` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `db_pioneer`;
+
+/*Table structure for table `desk` */
+
+DROP TABLE IF EXISTS `desk`;
+
+CREATE TABLE `desk` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `_no` varchar(20) NOT NULL,
+  `position` varchar(256) DEFAULT NULL,
+  `code_url` varchar(100) DEFAULT NULL,
+  `state` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `desk` */
+
+insert  into `desk`(`id`,`name`,`_no`,`position`,`code_url`,`state`) values (1,'1号桌','001','东',NULL,1),(2,'2号桌','002','西',NULL,1),(3,'3号桌','003','南',NULL,1),(4,'4号桌','004','北',NULL,1),(5,'5号桌','005','东',NULL,1);
+
+/*Table structure for table `food` */
+
+DROP TABLE IF EXISTS `food`;
+
+CREATE TABLE `food` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `imgid` varchar(100) DEFAULT NULL,
+  `insertdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `state` int(11) DEFAULT NULL,
+  `_desc` varchar(1024) DEFAULT NULL COMMENT '描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+/*Data for the table `food` */
+
+insert  into `food`(`id`,`name`,`price`,`imgid`,`insertdate`,`state`,`_desc`) values (1,'第一个','99.99','1111jpg','2018-05-27 01:15:29',0,'呵呵'),(2,'酱油拉面','16',NULL,'2018-05-27 01:15:29',0,'猪骨汤与酱油碰撞出的香味迷人'),(3,'麻婆拉面','20',NULL,'2018-05-27 01:15:30',0,'戳破蛋心让蛋黄缓缓流入汤汁，让人忍不住食指大动'),(4,'红酒牛排','57',NULL,'2018-05-27 01:15:31',0,'仅售57元！价值83元的法式红酒牛排，建议单人使用，有赠品'),(5,'意大利面','20',NULL,'2018-05-27 01:15:33',0,'点任意主食享无限量缤纷自选沙拉'),(6,'c','1.1','d2331a7ebd9445c4b851521cb035424f.jpg','2018-05-27 01:15:38',0,'123'),(7,'剁椒鱼头','24','c88295a9dc90438eb15c079aaef071b5.jpg','2018-05-26 21:16:44',1,'这是一道色香味俱全，又简单的湖南菜，很适合家宴和请客用'),(8,'节节登高','28','88ece51df7de4eda8e442a61d7b04ed7.jpg','2018-05-26 21:16:45',1,'节节登高是一道传统的汉族名菜，成品酱香浓郁，酸甜适口，肉质非常的鲜香，骨头已经炸的酥烂都能咬碎。'),(9,'韩式牛肉炒杂蔬','36','1113e6a2941049479de67808a7071886.jpg','2018-05-26 21:16:45',1,'不带油脂的瘦牛肉片，加上营养丰富的香菇和青菜，让人既可以补充气力，又不用担心脂肪的过多增加，真的是非常适合冬天吃呢'),(10,'葱爆小酥肉','36','00b535db2db44313aef6bf346a02f7d3.jpg','2018-05-26 21:16:48',1,'葱爆小酥肉是鲁菜的经典菜式之一，外表香酥，内里嫩滑，吃起来鲜香可口，让人齿颊留香。'),(11,'家常口水鸡','48','7357e89e08c94c299038301390adc66a.jpg','2018-05-26 21:17:08',1,'闻到香味就要流口水的鸡肉菜式，被红油包裹的鸡肉，红艳鲜亮，皮脆肉嫩、麻辣鲜香、鲜美而不腻');
+
+/*Table structure for table `menu` */
+
+DROP TABLE IF EXISTS `menu`;
+
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `insertdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `state` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+/*Data for the table `menu` */
+
+insert  into `menu`(`id`,`name`,`insertdate`,`state`) values (1,'热门菜品','2018-05-27 01:14:35',1),(2,'独家名菜','2018-05-26 19:21:45',1),(3,'吐血特价','2018-05-27 01:14:38',1),(5,'hot','2018-05-27 01:11:57',1),(6,'今天吃鸡','2018-05-27 01:14:46',0),(7,'面','2018-05-27 01:14:43',0),(8,'鱼与面','2018-05-26 22:30:19',1),(9,'好吃的','2018-05-27 01:14:45',0);
+
+/*Table structure for table `menufoods` */
+
+DROP TABLE IF EXISTS `menufoods`;
+
+CREATE TABLE `menufoods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `foodid` int(11) NOT NULL,
+  `menuid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+
+/*Data for the table `menufoods` */
+
+insert  into `menufoods`(`id`,`foodid`,`menuid`) values (6,4,2),(7,1,3),(8,2,3),(11,11,6),(14,7,8),(15,2,9),(17,4,9),(19,11,9),(28,1,3),(29,2,3),(34,1,1),(35,2,1),(36,4,1),(37,3,1),(38,5,1),(40,3,5),(41,6,5);
+
+/*Table structure for table `orderinfo` */
+
+DROP TABLE IF EXISTS `orderinfo`;
+
+CREATE TABLE `orderinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `insertDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '时间日期',
+  `_sno` varchar(20) NOT NULL COMMENT '订单号',
+  `deskId` int(11) NOT NULL COMMENT '桌号',
+  `amont` varchar(20) NOT NULL COMMENT '实付金额',
+  `_desc` varchar(1024) DEFAULT NULL COMMENT '备注',
+  `state` int(11) DEFAULT NULL COMMENT '1制作中，3，已完成，未评价，4，已评价',
+  `paystate` int(11) DEFAULT NULL COMMENT '0，未付款，1已付款',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `orderinfo` */
+
+insert  into `orderinfo`(`id`,`insertDate`,`_sno`,`deskId`,`amont`,`_desc`,`state`,`paystate`) values (1,'2018-05-27 01:01:51','sn260001',1,'123','不要辣',2,0);
+
+/*Table structure for table `orderrffood` */
+
+DROP TABLE IF EXISTS `orderrffood`;
+
+CREATE TABLE `orderrffood` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `oerderid` int(11) NOT NULL,
+  `foodid` int(11) NOT NULL,
+  `state` int(11) NOT NULL COMMENT '状态 1 以上 0 未上',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Data for the table `orderrffood` */
+
+insert  into `orderrffood`(`id`,`oerderid`,`foodid`,`state`) values (1,1,1,0),(2,1,2,0),(3,1,3,0),(4,1,4,0);
+
+/*Table structure for table `tt_pioneer_test` */
+
+DROP TABLE IF EXISTS `tt_pioneer_test`;
+
+CREATE TABLE `tt_pioneer_test` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'test id',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `tt_pioneer_test` */
+
+insert  into `tt_pioneer_test`(`id`,`create_time`,`update_time`) values (1,'2018-05-26 09:12:15','2018-05-26 09:12:15'),(2,'2018-05-26 09:12:15','2018-05-26 09:12:15');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

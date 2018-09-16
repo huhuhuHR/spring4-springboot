@@ -1,0 +1,1 @@
+package com.example.demo.schedule;import com.example.demo.config.TaskSchedulerConfig;import org.springframework.context.annotation.AnnotationConfigApplicationContext;public class ScheduledTaskServiceTest {    public static void main(String[] args) {        new AnnotationConfigApplicationContext(TaskSchedulerConfig.class);    }}

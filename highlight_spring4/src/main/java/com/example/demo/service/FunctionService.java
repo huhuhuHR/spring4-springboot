@@ -1,0 +1,1 @@
+package com.example.demo.service;import org.springframework.stereotype.Service;/** * @ Sevice 申明FunctionService是spring管理的bean */@Servicepublic class FunctionService {    public String sayHello(String word) {        return "Hello" + word;    }}
